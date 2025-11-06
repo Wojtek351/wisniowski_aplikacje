@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pętle, funkcje i tablice – zestaw zadań (C++) – WW</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1a1a1a;
+    --muted: #555;
+    --primary: #0b74d1;
+    --accent: #ff6b3d;
+    --card: #f7f7f9;
+    --border: #e6e6ef;
+    --hint: #fff8e6;
+  }
+  html, body {
+    background: var(--bg);
+    color: var(--fg);
+    margin: 0;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    line-height: 1.55;
+  }
+  header {
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    color: #fff;
+    padding: 28px 20px;
+  }
+  header h1 {
+    margin: 0 0 6px 0;
+    font-size: 28px;
+    letter-spacing: 0.2px;
+  }
+  header p {
+    margin: 0;
+    opacity: .95;
+  }
+  main {
+    padding: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 18px;
+    margin: 14px 0;
+  }
+  h2,h3 {
+    color: var(--primary);
+    margin-top: 24px;
+  }
+  h2 {
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 6px;
+  }
+  code, pre code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.95em;
+  }
+  pre {
+    background: #0f172a;
+    color: #e2e8f0;
+    border-radius: 10px;
+    padding: 12px 14px;
+    overflow: auto;
+    border: 1px solid #0b1220;
+  }
+  .hint {
+    background: var(--hint);
+    border: 1px solid #ffe3a3;
+    padding: 10px 12px;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+  .pts {
+    display: inline-block;
+    background: #eef6ff;
+    color: #0b74d1;
+    border: 1px solid #d8e9ff;
+    border-radius: 999px;
+    padding: 2px 10px;
+    font-weight: 600;
+    font-size: 13px;
+    margin-left: 6px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 18px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  th, td {
+    border-bottom: 1px solid var(--border);
+    padding: 10px 12px;
+    text-align: left;
+  }
+  th {
+    background: #f3f6fb;
+    color: #0b3461;
+  }
+  tr:last-child td {
+    border-bottom: none;
+  }
+  .footer-note {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 24px;
+  }
+  .meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin: 12px 0 24px;
+  }
+  .meta > div {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+  }
+  .badge {
+    display: inline-block;
+    background: #ebf9f0;
+    color: #0d7a3a;
+    border: 1px solid #ccead6;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 12px;
+    margin-left: 6px;
+  }
+  @media print {
+    header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .card { break-inside: avoid; }
+    pre { background: #111 !important; color: #eee !important; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Ćwiczenia na ocenę – Pętle, funkcje i tablice jednowymiarowe (C++)</h1>
+  <p>Autor: <strong>WW</strong> • Data: 2025-10-29 • Łącznie punktów: <strong>45</strong></p>
+</header>
+
+<main>
+  <section class="meta">
+    <div><strong>Poziom:</strong> Technik informatyk (klasa 2–3)</div>
+    <div><strong>Cel:</strong> Utrwalenie praktycznych umiejętności programowania w C++</div>
+    <div><strong>Zakres:</strong> Pętle, funkcje, tablice 1D</div>
+  </section>
+
+  <h2>🧠 Zadania z podpowiedziami i punktacją</h2>
+
+  <!-- Zadania 1–15 -->
+  <div class="card">
+    <h3>1) Wypisanie liczb <span class="pts">1 pkt</span></h3>
+    <p>Napisz program, który wypisze liczby od 1 do 20 w jednej linii, oddzielone spacjami.</p>
+    <div class="hint">💡 Podpowiedź: użyj pętli <code>for</code> i <code>cout &lt;&lt; i &lt;&lt; " "</code>.</div>
+  </div>
+
+  <div class="card">
+    <h3>2) Liczby parzyste <span class="pts">1 pkt</span></h3>
+    <p>Za pomocą pętli <strong>for</strong> wypisz wszystkie liczby parzyste z przedziału od 0 do 50.</p>
+    <div class="hint">💡 Podpowiedź: warunek parzystości: <code>if (i % 2 == 0)</code>.</div>
+  </div>
+
+  <div class="card">
+    <h3>3) Suma liczb <span class="pts">2 pkt</span></h3>
+    <p>Wczytaj od użytkownika 10 liczb i oblicz ich sumę. Użyj tablicy jednowymiarowej.</p>
+    <div class="hint">💡 Podpowiedź: wczytaj dane pętlą <code>for</code>, sumę licz w osobnej pętli.</div>
+  </div>
+
+  <div class="card">
+    <h3>4) Średnia ocen <span class="pts">2 pkt</span></h3>
+    <p>Wczytaj 5 ocen ucznia (1–6) do tablicy i oblicz średnią arytmetyczną. Wynik wypisz z dokładnością do 2 miejsc po przecinku.</p>
+    <div class="hint">💡 Podpowiedź: użyj typu <code>double</code> oraz formatu wyjścia:
+<pre><code>#include &lt;iomanip&gt;
+cout &lt;&lt; fixed &lt;&lt; setprecision(2);</code></pre></div>
+  </div>
+
+  <div class="card">
+    <h3>5) Największa liczba <span class="pts">2 pkt</span></h3>
+    <p>Wczytaj 8 liczb całkowitych do tablicy, a następnie znajdź i wypisz największą z nich.</p>
+    <div class="hint">💡 Podpowiedź: przyjmij pierwszy element jako początkowe maksimum i porównuj kolejne.</div>
+  </div>
+
+  <div class="card">
+    <h3>6) Liczby dodatnie <span class="pts">2 pkt</span></h3>
+    <p>Wczytaj 10 liczb do tablicy, a następnie policz, ile z nich jest dodatnich.</p>
+    <div class="hint">💡 Podpowiedź: użyj licznika i warunku <code>if (tab[i] &gt; 0)</code>.</div>
+  </div>
+
+  <div class="card">
+    <h3>7) Odwrócona kolejność <span class="pts">2 pkt</span></h3>
+    <p>Wczytaj 6 liczb do tablicy, a następnie wypisz je w odwrotnej kolejności.</p>
+    <div class="hint">💡 Podpowiedź: wypisuj od <code>n-1</code> do <code>0</code>: <code>for(int i=n-1; i&gt;=0; --i)</code>.</div>
+  </div>
+
+  <div class="card">
+    <h3>8) Funkcja sumująca <span class="pts">3 pkt</span></h3>
+    <p>Napisz funkcję <code>int Suma(int a, int b)</code>, która zwraca sumę dwóch liczb. W <code>main()</code> pobierz dwie liczby i wypisz wynik.</p>
+    <div class="hint">💡 Podpowiedź: zdefiniuj funkcję nad <code>main()</code> i wywołaj ją w programie.</div>
+  </div>
+
+  <div class="card">
+    <h3>9) Funkcja parzystości <span class="pts">3 pkt</span></h3>
+    <p>Napisz funkcję <code>bool CzyParzysta(int n)</code>, która zwraca <code>true</code> dla liczb parzystych. W <code>main()</code> wczytaj liczbę i wypisz wynik.</p>
+    <div class="hint">💡 Podpowiedź: użyj operatora <code>%</code> i instrukcji <code>if</code>.</div>
+  </div>
+
+  <div class="card">
+    <h3>10) Suma elementów tablicy – funkcja <span class="pts">3 pkt</span></h3>
+    <p>Napisz funkcję <code>int SumaTablicy(int tab[], int n)</code>, która zwraca sumę elementów tablicy. Przetestuj na 5 liczbach.</p>
+    <div class="hint">💡 Podpowiedź: zsumuj elementy w pętli <code>for</code> i zwróć wynik.</div>
+  </div>
+
+  <div class="card">
+    <h3>11) Średnia funkcją <span class="pts">3 pkt</span></h3>
+    <p>Napisz funkcję <code>double Srednia(int tab[], int n)</code>, która zwraca średnią elementów tablicy. Przetestuj na 6 ocenach.</p>
+    <div class="hint">💡 Podpowiedź: policz sumę i zwróć <code>suma / n</code> (typ <code>double</code>).</div>
+  </div>
+
+  <div class="card">
+    <h3>12) Minimum w tablicy <span class="pts">3 pkt</span></h3>
+    <p>Napisz funkcję <code>int Minimum(int tab[], int n)</code>, która zwraca najmniejszy element tablicy. Wczytaj 10 liczb i wypisz wynik.</p>
+    <div class="hint">💡 Podpowiedź: zacznij od <code>min = tab[0]</code> i porównuj kolejne elementy.</div>
+  </div>
+
+  <div class="card">
+    <h3>13) Wyszukiwanie elementu <span class="pts">4 pkt</span></h3>
+    <p>Wczytaj 10 liczb do tablicy, następnie wczytaj liczbę do wyszukania. Sprawdź, czy występuje (TAK/NIE).</p>
+    <div class="hint">💡 Podpowiedź: przeszukaj tablicę pętlą, użyj <code>bool znaleziono</code>.</div>
+  </div>
+
+  <div class="card">
+    <h3>14) Odwróć tablicę funkcją <span class="pts">4 pkt</span></h3>
+    <p>Napisz funkcję <code>void OdwrocTablice(int tab[], int n)</code>, która odwraca kolejność elementów. Pokaż przed i po.</p>
+    <div class="hint">💡 Podpowiedź: zamieniaj parami: (0&lt;-&gt;n-1), (1&lt;-&gt;n-2)…</div>
+  </div>
+
+  <div class="card">
+    <h3>15) Tablica losowa <span class="pts">5 pkt</span></h3>
+    <p>Wylosuj 10 liczb z zakresu 1–100, zapisz je do tablicy, a następnie oblicz sumę i średnią.</p>
+    <div class="hint">💡 Podpowiedź: <code>srand(time(0));</code> i <code>rand() % 100 + 1</code>. Pamiętaj o <code>#include &lt;ctime&gt;</code>.</div>
+  </div>
+
+  <!-- Ćwiczenie 16 – celujące -->
+  <div class="card">
+    <h3>16) Menu programowe (OCENA CELUJĄCA) <span class="pts">5 pkt</span></h3>
+    <p>Napisz program, który wyświetla <strong>menu wyboru ćwiczenia</strong> (1–15) i uruchamia wybraną pozycję. Opcja <strong>0</strong> kończy program.
+       Każde ćwiczenie może być osobną funkcją, a menu działa w pętli.</p>
+    <div class="hint">💡 Podpowiedź:
+<pre><code>int wybor;
+while (true) {
+  cout &lt;&lt; "1-15: uruchom, 0: koniec\n";
+  cin &gt;&gt; wybor;
+  switch (wybor) {
+    case 1: /* cw1(); */ break;
+    // ...
+    case 0: cout &lt;&lt; "Koniec"; return 0;
+    default: cout &lt;&lt; "Niepoprawny wybór!";
+  }
+}</code></pre></div>
+  </div>
+
+  <h2>🧾 Podsumowanie punktacji</h2>
+  <table>
+    <thead>
+      <tr><th>Poziom trudności</th><th>Zakres punktów</th><th>Przykładowe zadania</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>🟢 Łatwe</td><td>1–2 pkt</td><td>1–7</td></tr>
+      <tr><td>🟡 Średnie</td><td>3 pkt</td><td>8–12</td></tr>
+      <tr><td>🔴 Trudniejsze</td><td>4–5 pkt</td><td>13–16</td></tr>
+      <tr><td colspan="3"><strong>Łącznie możliwych do zdobycia punktów: 45</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h2>🎓 Skala ocen</h2>
+  <table>
+    <thead>
+      <tr><th>Ocena</th><th>Opis</th><th>Próg punktowy</th><th>Procent (orientacyjnie)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>1 – ndst</strong></td><td>Brak minimalnego zakresu wiedzy</td><td>0–12 pkt</td><td>0–29%</td></tr>
+      <tr><td><strong>2 – dop</strong></td><td>Osiągnięto minimum wymagań</td><td><strong>13–20 pkt</strong></td><td>33–50%</td></tr>
+      <tr><td><strong>3 – dst</strong></td><td>Zadowalające opanowanie podstaw</td><td>21–28 pkt</td><td>53–70%</td></tr>
+      <tr><td><strong>4 – db</strong></td><td>Dobre opanowanie treści i samodzielność</td><td>29–34 pkt</td><td>73–85%</td></tr>
+      <tr><td><strong>5 – bdb</strong></td><td>Pełne i poprawne wykonanie wszystkich zadań</td><td>35–40 pkt</td><td>88–100%</td></tr>
+      <tr><td><strong>6 – cel</strong> <span class="badge">nowe</span></td><td>Wykonanie zadania 16 (menu) w pełni poprawnie</td><td><strong>41–45 pkt</strong></td><td>100%+</td></tr>
+    </tbody>
+  </table>
+
+  <h2>📘 Dokumentacja – składnia i przykłady</h2>
+
+  <h3>Pętle</h3>
+<pre><code>for (int i = 0; i &lt; n; i++) {
+  // instrukcje
+}
+
+while (warunek) {
+  // instrukcje
+}
+
+do {
+  // instrukcje
+} while (warunek);</code></pre>
+
+  <h3>Tablice jednowymiarowe</h3>
+<pre><code>int tab[5];                    // deklaracja tablicy 5 elementów
+for (int i = 0; i &lt; 5; i++) {
+  cin &gt;&gt; tab[i];               // wczytywanie
+}
+cout &lt;&lt; tab[2];                 // dostęp do elementu</code></pre>
+
+  <h3>Funkcje</h3>
+<pre><code>typ_zwracany Nazwa(parametry) {
+  // ciało funkcji
+  return wartość;
+}
+
+// przykład
+int Suma(int a, int b) {
+  return a + b;
+}
+
+// funkcja void (nie zwraca wyniku)
+void Powitanie() {
+  cout &lt;&lt; "Witaj!";
+}</code></pre>
+
+  <h3>Przykład: pętla + funkcja + tablica</h3>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int SumaTablicy(int tab[], int n) {
+  int suma = 0;
+  for (int i = 0; i &lt; n; i++) suma += tab[i];
+  return suma;
+}
+
+int main() {
+  int liczby[5];
+  for (int i = 0; i &lt; 5; i++) {
+    cout &lt;&lt; "Podaj liczbe: ";
+    cin &gt;&gt; liczby[i];
+  }
+  cout &lt;&lt; "Suma elementow: " &lt;&lt; SumaTablicy(liczby, 5);
+}</code></pre>
+
+  <p class="footer-note">© 2025 • Autor: WW • Materiał do użytku dydaktycznego.</p>
+</main>
+</body>
+</html>
