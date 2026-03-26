@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Ćwiczenia na ocenę – JavaScript</title>
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    margin:0;
+    padding:0;
+    line-height:1.6;
+}
+header{
+    background:#2563eb;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+section{
+    background:white;
+    max-width:1000px;
+    margin:30px auto;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+h2{
+    color:#2563eb;
+    margin-top:0;
+}
+.exercise{
+    background:#fef9c3;
+    padding:15px;
+    border-left:5px solid #ca8a04;
+    margin:20px 0;
+}
+.tip{
+    background:#dcfce7;
+    padding:10px;
+    border-left:5px solid #16a34a;
+    margin-top:10px;
+}
+.note{
+    background:#e0f2fe;
+    padding:15px;
+    border-left:5px solid #0284c7;
+    margin:20px 0;
+}
+code{
+    color:#c7254e;
+    font-weight:bold;
+}
+footer{
+    text-align:center;
+    padding:25px;
+    background:#e5e7eb;
+    color:#374151;
+    font-weight:bold;
+    margin-top:40px;
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>💻 Ćwiczenia na ocenę – JavaScript</h1>
+    <p>Instrukcje warunkowe • Pętle • Tablice • Zadania mieszane</p>
+</header>
+
+<section>
+    <h2>Informacje dla ucznia</h2>
+    <div class="note">
+        W zadaniach można używać poznanych sposobów wyświetlania danych:
+        <code>document.write()</code>, <code>alert()</code>, <code>console.log()</code>.<br>
+        Tam, gdzie to możliwe, wprowadź dane za pomocą <code>prompt()</code>.
+    </div>
+</section>
+
+<section>
+    <h2>1️⃣ Instrukcje warunkowe</h2>
+
+    <div class="exercise">
+        <strong>Zadanie 1:</strong><br>
+        Pobierz od użytkownika liczbę za pomocą <code>prompt()</code>.
+        Sprawdź, czy liczba jest:
+        <ul>
+            <li>większa od 100,</li>
+            <li>równa 100,</li>
+            <li>mniejsza od 100.</li>
+        </ul>
+        Wyświetl odpowiedni komunikat.
+        <div class="tip">
+            Podpowiedź: użyj <code>if</code>, <code>else if</code>, <code>else</code>.
+        </div>
+    </div>
+
+    <div class="exercise">
+        <strong>Zadanie 2:</strong><br>
+        Pobierz od użytkownika wiek. Program ma sprawdzić, czy osoba:
+        <ul>
+            <li>jest dzieckiem (poniżej 13 lat),</li>
+            <li>nastolatkiem (od 13 do 17),</li>
+            <li>pełnoletnia (18 i więcej).</li>
+        </ul>
+        Wyświetl wynik na stronie.
+        <div class="tip">
+            Podpowiedź: pamiętaj o zamianie tekstu z <code>prompt()</code> na liczbę.
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>2️⃣ Pętle</h2>
+
+    <div class="exercise">
+        <strong>Zadanie 3:</strong><br>
+        Pobierz od użytkownika liczbę i wypisz wszystkie liczby od 1 do tej liczby.
+        <div class="tip">
+            Podpowiedź: użyj pętli <code>for</code>.
+        </div>
+    </div>
+
+    <div class="exercise">
+        <strong>Zadanie 4:</strong><br>
+        Wypisz liczby od 20 do 1 w odwrotnej kolejności.
+        Następnie policz, ile z tych liczb jest podzielnych przez 3.
+        <div class="tip">
+            Podpowiedź: jedna pętla może jednocześnie wypisywać liczby i zliczać spełniony warunek.
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>3️⃣ Tablice</h2>
+
+    <div class="exercise">
+        <strong>Zadanie 5:</strong><br>
+        Utwórz tablicę z 5 nazwami owoców.
+        Wypisz:
+        <ul>
+            <li>pierwszy element tablicy,</li>
+            <li>ostatni element tablicy,</li>
+            <li>wszystkie elementy tablicy jeden pod drugim.</li>
+        </ul>
+        <div class="tip">
+            Podpowiedź: ostatni element można pobrać przez <code>tablica.length - 1</code>.
+        </div>
+    </div>
+
+    <div class="exercise">
+        <strong>Zadanie 6:</strong><br>
+        Utwórz tablicę liczb, np. <code>[4, 7, 2, 9, 12, 5]</code>.
+        Policz, ile elementów w tablicy jest liczbami parzystymi.
+        <div class="tip">
+            Podpowiedź: przejdź przez tablicę pętlą i sprawdzaj warunek <code>% 2 == 0</code>.
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>4️⃣ Zadania mieszane</h2>
+
+    <div class="exercise">
+        <strong>Zadanie 7:</strong><br>
+        Utwórz tablicę z ocenami, np. <code>[2, 3, 4, 5, 6]</code>.
+        Oblicz średnią ocen, a następnie sprawdź:
+        <ul>
+            <li>jeśli średnia jest większa lub równa 3 — wyświetl komunikat <em>Uczeń zaliczył</em>,</li>
+            <li>w przeciwnym razie — <em>Uczeń nie zaliczył</em>.</li>
+        </ul>
+        <div class="tip">
+            Podpowiedź: najpierw policz sumę elementów tablicy, potem średnią.
+        </div>
+    </div>
+
+    <div class="exercise">
+        <strong>Zadanie 8:</strong><br>
+        Pobierz od użytkownika 3 liczby za pomocą <code>prompt()</code> i zapisz je do tablicy.
+        Następnie:
+        <ul>
+            <li>wypisz wszystkie liczby,</li>
+            <li>oblicz ich sumę,</li>
+            <li>sprawdź, czy suma jest parzysta czy nieparzysta.</li>
+        </ul>
+        <div class="tip">
+            Podpowiedź: po wczytaniu danych umieść je w tablicy i użyj pętli do obliczenia sumy.
+        </div>
+    </div>
+</section>
+
+<footer>Przygotował - WW</footer>
+
+</body>
+</html>
