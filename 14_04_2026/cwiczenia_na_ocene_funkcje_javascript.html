@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ćwiczenia na ocenę – Funkcje w JavaScript</title>
+    <style>
+        :root{
+            --bg:#f5f7fb;
+            --card:#ffffff;
+            --text:#1f2937;
+            --muted:#6b7280;
+            --accent:#2563eb;
+            --accent2:#1d4ed8;
+            --border:#dbe4f0;
+            --soft:#eef4ff;
+            --warning:#fff7ed;
+        }
+        *{box-sizing:border-box}
+        body{
+            margin:0;
+            font-family:"Segoe UI", Tahoma, Arial, sans-serif;
+            background: linear-gradient(180deg, #eef4ff 0%, #f8fbff 35%, #f5f7fb 100%);
+            color:var(--text);
+            line-height:1.65;
+        }
+        .wrap{
+            max-width:1000px;
+            margin:0 auto;
+            padding:28px 20px 40px;
+        }
+        header{
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color:white;
+            border-radius:18px;
+            padding:30px 32px;
+            box-shadow:0 12px 30px rgba(37,99,235,0.18);
+            margin-bottom:24px;
+        }
+        header h1{
+            margin:0 0 10px 0;
+            font-size:2rem;
+        }
+        header p{
+            margin:6px 0;
+            font-size:1.05rem;
+        }
+        .card{
+            background:var(--card);
+            border:1px solid var(--border);
+            border-radius:18px;
+            padding:24px 26px;
+            box-shadow:0 8px 24px rgba(15,23,42,0.05);
+            margin-bottom:20px;
+        }
+        h2{
+            margin-top:0;
+            color:var(--accent2);
+            font-size:1.45rem;
+        }
+        h3{
+            margin-top:0;
+            margin-bottom:12px;
+            color:#0f3ea8;
+            font-size:1.15rem;
+        }
+        .note{
+            background:var(--soft);
+            border-left:5px solid var(--accent);
+            padding:14px 16px;
+            border-radius:12px;
+            margin:14px 0 0;
+        }
+        .warn{
+            background:var(--warning);
+            border-left:5px solid #f59e0b;
+            padding:14px 16px;
+            border-radius:12px;
+            margin-top:14px;
+        }
+        ol.rules{
+            margin:0;
+            padding-left:22px;
+        }
+        .task{
+            border:1px solid var(--border);
+            border-radius:16px;
+            padding:18px 18px 16px;
+            margin-bottom:16px;
+            background:#fcfdff;
+        }
+        .task-header{
+            display:flex;
+            justify-content:space-between;
+            gap:12px;
+            align-items:center;
+            flex-wrap:wrap;
+            margin-bottom:10px;
+        }
+        .badge{
+            background:var(--accent);
+            color:white;
+            padding:6px 12px;
+            border-radius:999px;
+            font-size:0.92rem;
+            font-weight:600;
+            white-space:nowrap;
+        }
+        code{
+            background:#eef2ff;
+            border:1px solid #d9e1ff;
+            padding:2px 7px;
+            border-radius:7px;
+            font-family:Consolas, "Courier New", monospace;
+            font-size:0.95em;
+        }
+        pre{
+            background:#0f172a;
+            color:#e5eefc;
+            padding:14px 16px;
+            border-radius:14px;
+            overflow:auto;
+            border:1px solid #1e293b;
+            margin:10px 0 0;
+        }
+        ul{
+            margin-top:8px;
+            margin-bottom:0;
+        }
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:10px;
+        }
+        th, td{
+            border:1px solid var(--border);
+            padding:12px 14px;
+            text-align:left;
+        }
+        th{
+            background:#edf4ff;
+            color:#163b8c;
+        }
+        footer{
+            text-align:center;
+            color:var(--muted);
+            font-size:0.95rem;
+            margin-top:24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <h1>Ćwiczenia na ocenę – Funkcje w JavaScript</h1>
+            <p><strong>Zakres:</strong> funkcje własne, funkcje tablic, funkcje znaków</p>
+            <p><strong>Forma pracy:</strong> wszystkie zadania wykonaj w jednym pliku <code>zadania.html</code>, a kod JavaScript umieść wewnątrz znacznika <code>&lt;script&gt;</code>.</p>
+        </header>
+
+        <section class="card">
+            <h2>Instrukcja dla ucznia</h2>
+            <ol class="rules">
+                <li>Wszystkie zadania wykonaj w jednym pliku <code>zadania.html</code>.</li>
+                <li>Kod JavaScript wpisz wewnątrz znacznika <code>&lt;script&gt;</code>.</li>
+                <li>Każde zadanie oddziel komentarzem, np. <code>// ZADANIE 1</code>.</li>
+                <li>Wyniki wyświetlaj za pomocą <code>document.write()</code>.</li>
+                <li>Jeżeli zadanie wymaga funkcji, napisz ją samodzielnie.</li>
+            </ol>
+
+            <div class="note">
+                <strong>Wskazówka:</strong> w funkcjach własnych najlepiej używać <code>return</code>, a wynik wyświetlić osobno.
+            </div>
+
+            <div class="warn">
+                <strong>Uwaga:</strong> zadania mają mieć charakter samodzielnego rozwiązania. Nie wpisuj gotowych odpowiedzi w treści poleceń.
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Zadania</h2>
+
+            <div class="task">
+                <div class="task-header">
+                    <h3>Zadanie 1 – funkcja własna</h3>
+                    <div class="badge">10 pkt</div>
+                </div>
+                <p>Napisz funkcję <code>sumaLiczb(a, b)</code>, która zwraca sumę dwóch liczb.</p>
+            </div>
+
+            <div class="task">
+                <div class="task-header">
+                    <h3>Zadanie 2 – funkcja własna + warunek</h3>
+                    <div class="badge">10 pkt</div>
+                </div>
+                <p>Napisz funkcję <code>czyPelnoletni(wiek)</code>, która zwraca:</p>
+                <ul>
+                    <li><code>Pełnoletni</code> – jeśli wiek jest większy lub równy 18,</li>
+                    <li><code>Niepełnoletni</code> – w przeciwnym razie.</li>
+                </ul>
+            </div>
+
+            <div class="task">
+                <div class="task-header">
+                    <h3>Zadanie 3 – funkcja własna</h3>
+                    <div class="badge">10 pkt</div>
+                </div>
+                <p>Napisz funkcję <code>poleProstokata(a, b)</code>, która zwraca pole prostokąta.</p>
+            </div>
+
+            <div class="task">
+                <div class="task-header">
+                    <h3>Zadanie 4 – funkcja własna</h3>
+                    <div class="badge">10 pkt</div>
+                </div>
+                <p>Napisz funkcję <code>czyParzysta(liczba)</code>, która zwraca:</p>
+                <ul>
+                    <li><code>Parzysta</code> – jeśli liczba jest parzysta,</li>
+                    <li><code>Nieparzysta</code> – jeśli liczba jest nieparzysta.</li>
+                </ul>
+            </div>
+
+            <div class="task">
+                <div class="task-header">
+                    <h3>Zadanie 5 – funkcje tablic</h3>
+                    <div class="badge">10 pkt</div>
+                </div>
+                <p>Utwórz tablicę:</p>
+                <pre>let liczby = [5, 12, 8, 20, 3];</pre>
+                <p>Wyświetl:</p>
+                <ul>
+                    <li>największą wartość,</li>
+                    <li>najmniejszą wartość,</li>
+                    <li>liczbę elementów tablicy.</li>
+                </ul>
+            </div>
+
+            <div class="task">
+                <div class="task-header">
+                    <h3>Zadanie 6 – tablice + pętla</h3>
+                    <div class="badge">10 pkt</div>
+                </div>
+                <p>Dla tej samej tablicy <code>liczby</code> wypisz wszystkie liczby większe od 10.</p>
+            </div>
+
+            <div class="task">
+                <div class="task-header">
+                    <h3>Zadanie 7 – funkcja własna + tablica</h3>
+                    <div class="badge">10 pkt</div>
+                </div>
+                <p>Napisz funkcję <code>sredniaTablicy(tablica)</code>, która oblicza i zwraca średnią elementów tablicy.</p>
+            </div>
+
+            <div class="task">
+                <div class="task-header">
+                    <h3>Zadanie 8 – funkcje tablic</h3>
+                    <div class="badge">10 pkt</div>
+                </div>
+                <p>Dla tablicy:</p>
+                <pre>let owoce = ["jabłko", "banan", "gruszka"];</pre>
+                <p>Wykonaj następujące działania:</p>
+                <ul>
+                    <li>dodaj element <code>pomarańcza</code>,</li>
+                    <li>posortuj tablicę alfabetycznie,</li>
+                    <li>wyświetl wszystkie elementy tablicy.</li>
+                </ul>
+            </div>
+
+            <div class="task">
+                <div class="task-header">
+                    <h3>Zadanie 9 – funkcje znaków</h3>
+                    <div class="badge">10 pkt</div>
+                </div>
+                <p>Dla tekstu:</p>
+                <pre>let tekst = "Programowanie w JavaScript";</pre>
+                <p>Wykonaj:</p>
+                <ul>
+                    <li>zamianę tekstu na wielkie litery,</li>
+                    <li>obliczenie długości tekstu,</li>
+                    <li>sprawdzenie, czy tekst zawiera słowo <code>JavaScript</code>.</li>
+                </ul>
+            </div>
+
+            <div class="task">
+                <div class="task-header">
+                    <h3>Zadanie 10 – funkcje znaków</h3>
+                    <div class="badge">10 pkt</div>
+                </div>
+                <p>Napisz kod, który zamienia wszystkie spacje w tekście na znak <code>-</code>.</p>
+            </div>
+
+            <div class="task">
+                <div class="task-header">
+                    <h3>Zadanie 11 – funkcja własna + string</h3>
+                    <div class="badge">10 pkt</div>
+                </div>
+                <p>Napisz funkcję <code>czyPalindrom(tekst)</code>, która sprawdza, czy podany wyraz czytany od tyłu jest taki sam.</p>
+                <p>Funkcja ma zwracać:</p>
+                <ul>
+                    <li><code>Tak</code> – jeśli to palindrom,</li>
+                    <li><code>Nie</code> – jeśli nie jest palindromem.</li>
+                </ul>
+                <p>Przykład: <code>kajak</code> → <code>Tak</code></p>
+            </div>
+
+            <div class="task">
+                <div class="task-header">
+                    <h3>Zadanie 12 – funkcja własna</h3>
+                    <div class="badge">10 pkt</div>
+                </div>
+                <p>Napisz funkcję <code>maxZTrzech(a, b, c)</code>, która zwraca największą z trzech liczb.</p>
+                <p><strong>Nie używaj funkcji <code>Math.max()</code>.</strong></p>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Punktacja i oceny</h2>
+            <p>Maksymalna liczba punktów: <strong>120 pkt</strong></p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Procent</th>
+                        <th>Ocena</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>0–30%</td><td>1</td></tr>
+                    <tr><td>31–50%</td><td>2</td></tr>
+                    <tr><td>51–70%</td><td>3</td></tr>
+                    <tr><td>71–85%</td><td>4</td></tr>
+                    <tr><td>86–95%</td><td>5</td></tr>
+                    <tr><td>96–100%</td><td>6</td></tr>
+                </tbody>
+            </table>
+
+            <div class="note">
+                <strong>Próg na ocenę dopuszczającą:</strong> uczeń powinien zdobyć więcej niż 30% punktów.
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Przydatne elementy JavaScript</h2>
+            <ul>
+                <li><code>length</code> – długość tekstu lub tablicy</li>
+                <li><code>toUpperCase()</code> – zamiana na wielkie litery</li>
+                <li><code>includes()</code> – sprawdzenie, czy tekst zawiera fragment</li>
+                <li><code>push()</code> – dodanie elementu do tablicy</li>
+                <li><code>sort()</code> – sortowanie tablicy</li>
+                <li><code>Math.max(...tablica)</code>, <code>Math.min(...tablica)</code> – największa i najmniejsza wartość</li>
+                <li><code>split()</code>, <code>join()</code> – podział i łączenie tekstu</li>
+            </ul>
+        </section>
+
+        <footer>
+            Przygotował: WW
+        </footer>
+    </div>
+</body>
+</html>
