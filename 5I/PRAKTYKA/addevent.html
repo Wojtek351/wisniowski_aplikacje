@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>addEventListener - Formularze</title>
+</head>
+<body>
+
+  <!-- Formularz tekstowy -->
+  <form id="formularzTekstowy">
+    <label for="poleTekstowe">Wpisz tekst:</label><br />
+    <input type="text" id="poleTekstowe" name="poleTekstowe" />
+    <br />
+    <!-- type="button" nie wysyła formularza i nie przeładowuje strony -->
+    <button type="button" id="przyciskTekst">Wyświetl tekst</button>
+    <p id="wynikTekstu"></p>
+  </form>
+
+  <!-- Checkbox z 3 opcjami -->
+  <form id="formularzCheckbox">
+    <p>Wybierz opcje (checkbox):</p>
+    <label><input type="checkbox" name="opcjaCheckbox" value="Opcja 1" /> Opcja 1</label><br />
+    <label><input type="checkbox" name="opcjaCheckbox" value="Opcja 2" /> Opcja 2</label><br />
+    <label><input type="checkbox" name="opcjaCheckbox" value="Opcja 3" /> Opcja 3</label><br />
+    <button type="button" id="przyciskCheckbox">Pokaż zaznaczone</button>
+    <p id="wynikCheckbox"></p>
+  </form>
+
+  <!-- Radio -->
+  <form id="formularzRadio">
+    <p>Wybierz opcję (radio):</p>
+    <label><input type="radio" name="opcjaRadio" value="Opcja 1" checked /> Opcja 1</label><br />
+    <label><input type="radio" name="opcjaRadio" value="Opcja 2" /> Opcja 2</label><br />
+    <label><input type="radio" name="opcjaRadio" value="Opcja 3" /> Opcja 3</label><br />
+    <button type="button" id="przyciskRadio">Wybierz</button>
+    <p id="wynikRadio"></p>
+  </form>
+
+  <!-- Select -->
+  <form id="formularzSelect">
+    <label for="listaOwocow">Wybierz owoc:</label><br />
+    <select id="listaOwocow" name="listaOwocow">
+      <option value="Jabłko">Jabłko</option>
+      <option value="Banan">Banan</option>
+      <option value="Pomarańcza">Pomarańcza</option>
+    </select>
+    <br />
+    <button type="button" id="przyciskOwoc">Wybierz owoc</button>
+    <p id="wynikOwocu"></p>
+  </form>
+
+<script>
+  // NOWY SPOSÓB: zdarzenie click przypisujemy w JavaScript.
+  // Odczytujemy tekst wpisany w polu za pomocą właściwości value.
+  document.getElementById('przyciskTekst').addEventListener('click', function() {
+    const tekst = document.getElementById('poleTekstowe').value;
+
+    if (tekst == '') {
+      document.getElementById('wynikTekstu').textContent = 'Nie wpisano tekstu.';
+    } else {
+      document.getElementById('wynikTekstu').textContent = 'Wprowadzony tekst: ' + tekst;
+    }
+  });
+
+  // Checkbox - addEventListener
+  document.getElementById('przyciskCheckbox').addEventListener('click', function() {
+    const polaCheckbox = document.getElementsByName('opcjaCheckbox');
+    let wynik = '';
+
+    // Sprawdzamy po kolei każde pole checkbox.
+    for (let i = 0; i < polaCheckbox.length; i++) {
+      if (polaCheckbox[i].checked) {
+        wynik = wynik + polaCheckbox[i].value + ' ';
+      }
+    }
+
+    if (wynik == '') {
+      document.getElementById('wynikCheckbox').textContent = 'Nie zaznaczono żadnej opcji.';
+    } else {
+      document.getElementById('wynikCheckbox').textContent = 'Zaznaczone opcje: ' + wynik;
+    }
+  });
+
+  // Radio - addEventListener
+  document.getElementById('przyciskRadio').addEventListener('click', function() {
+    const polaRadio = document.getElementsByName('opcjaRadio');
+    let wybranaOpcja = '';
+
+    // Sprawdzamy po kolei, który przycisk radio jest zaznaczony.
+    for (let i = 0; i < polaRadio.length; i++) {
+      if (polaRadio[i].checked) {
+        wybranaOpcja = polaRadio[i].value;
+        break;
+      }
+    }
+
+    document.getElementById('wynikRadio').textContent = 'Wybrana opcja: ' + wybranaOpcja;
+  });
+
+  // Select - addEventListener
+  document.getElementById('przyciskOwoc').addEventListener('click', function() {
+    const wybranyOwoc = document.getElementById('listaOwocow').value;
+    document.getElementById('wynikOwocu').textContent = 'Wybrany owoc: ' + wybranyOwoc;
+  });
+</script>
+
+</body>
+</html>

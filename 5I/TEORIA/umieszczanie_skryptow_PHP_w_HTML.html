@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Umieszczanie skryptów PHP w dokumentach HTML</title>
+<style>
+:root{--bg:#0f172a;--card:#172033;--text:#e5e7eb;--muted:#aab4c5;--accent:#38bdf8;--code:#0b1120;--line:#334155}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Segoe UI,Arial,sans-serif;line-height:1.65}
+main{max-width:1050px;margin:auto;padding:42px 24px 70px}
+h1{font-size:2.35rem;margin:0 0 8px;color:#fff}
+h2{margin-top:42px;color:var(--accent);border-bottom:1px solid var(--line);padding-bottom:8px}
+h3{color:#fff;margin-top:26px}
+p,li{font-size:1.05rem}
+.lead{color:var(--muted);font-size:1.15rem}
+.box{background:var(--card);border-left:4px solid var(--accent);padding:16px 20px;margin:20px 0;border-radius:6px}
+code{font-family:Consolas,monospace}
+pre{background:var(--code);padding:18px;border-radius:8px;overflow:auto;border:1px solid var(--line);font-size:.98rem;line-height:1.5}
+.inline{background:var(--code);padding:2px 6px;border-radius:4px}
+table{width:100%;border-collapse:collapse;margin:20px 0}
+th,td{border:1px solid var(--line);padding:12px;text-align:left}
+th{background:#1e293b;color:#fff}
+strong{color:#fff}
+footer{margin-top:55px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted);text-align:right}
+</style>
+</head>
+<body>
+<main>
+<h1>Umieszczanie skryptów PHP w dokumentach HTML</h1>
+<p class="lead">PHP może być umieszczany bezpośrednio pomiędzy elementami HTML. Dzięki temu jedna strona może zawierać zarówno statyczną strukturę dokumentu, jak i treści tworzone dynamicznie przez serwer.</p>
+
+<h2>1. HTML a PHP – przypomnienie</h2>
+<p><strong>HTML</strong> opisuje strukturę strony internetowej. Przeglądarka interpretuje znaczniki HTML i na ich podstawie wyświetla nagłówki, akapity, obrazy, formularze i inne elementy.</p>
+<p><strong>PHP</strong> jest językiem wykonywanym po stronie serwera. Kod PHP jest przetwarzany przez interpreter PHP, a do przeglądarki użytkownika trafia przede wszystkim wynik działania skryptu, najczęściej w postaci kodu HTML.</p>
+
+<div class="box">
+<strong>Ważne:</strong> przeglądarka nie wykonuje kodu PHP. Kod PHP musi zostać przetworzony przez serwer wyposażony w interpreter PHP, np. Apache uruchomiony w pakiecie XAMPP.
+</div>
+
+<h2>2. Rozszerzenie pliku</h2>
+<p>Jeżeli dokument zawiera kod PHP, zapisujemy go standardowo z rozszerzeniem <code class="inline">.php</code>, np.:</p>
+<pre><code>index.php
+kontakt.php
+produkty.php</code></pre>
+<p>Sam kod HTML może znajdować się w pliku PHP bez żadnych zmian. Rozszerzenie <code class="inline">.php</code> informuje serwer, że dokument może zawierać kod wymagający przetworzenia przez interpreter PHP.</p>
+
+<table>
+<tr><th>Plik</th><th>Typowa zawartość</th><th>Przetwarzanie PHP</th></tr>
+<tr><td>index.html</td><td>HTML, CSS, JavaScript</td><td>standardowo nie</td></tr>
+<tr><td>index.php</td><td>HTML, CSS, JavaScript oraz PHP</td><td>tak</td></tr>
+</table>
+
+<h2>3. Znaczniki PHP</h2>
+<p>Kod PHP umieszczamy pomiędzy znacznikami:</p>
+<pre><code>&lt;?php
+    // kod PHP
+?&gt;</code></pre>
+<p>Otwarcie <code class="inline">&lt;?php</code> oznacza początek kodu PHP, natomiast <code class="inline">?&gt;</code> jego zakończenie.</p>
+
+<h3>Najprostszy przykład</h3>
+<pre><code>&lt;?php
+echo "Witaj na stronie!";
+?&gt;</code></pre>
+<p>Instrukcja <code class="inline">echo</code> wysyła tekst do wyniku generowanego przez skrypt.</p>
+
+<h2>4. PHP wewnątrz dokumentu HTML</h2>
+<p>Kod PHP można umieścić w wybranym miejscu dokumentu HTML.</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pl"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Pierwsza strona PHP&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;h1&gt;Moja strona&lt;/h1&gt;
+
+    &lt;?php
+    echo "Ten tekst został wygenerowany przez PHP.";
+    ?&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>Fragmenty znajdujące się poza znacznikami PHP są traktowane jako zwykły HTML. Fragment pomiędzy <code class="inline">&lt;?php</code> i <code class="inline">?&gt;</code> jest wykonywany przez interpreter PHP.</p>
+
+<h2>5. Co otrzymuje przeglądarka?</h2>
+<p>Załóżmy, że na serwerze znajduje się następujący fragment:</p>
+<pre><code>&lt;h2&gt;Informacja&lt;/h2&gt;
+
+&lt;?php
+echo "&lt;p&gt;Strona działa poprawnie.&lt;/p&gt;";
+?&gt;</code></pre>
+<p>Po wykonaniu PHP przeglądarka otrzyma wynik odpowiadający kodowi:</p>
+<pre><code>&lt;h2&gt;Informacja&lt;/h2&gt;
+&lt;p&gt;Strona działa poprawnie.&lt;/p&gt;</code></pre>
+<div class="box">
+<strong>Kod źródłowy PHP pozostaje na serwerze.</strong> Użytkownik strony otrzymuje wynik jego wykonania, a nie instrukcje PHP zapisane w pliku.
+</div>
+
+<h2>6. Instrukcja echo</h2>
+<p><code class="inline">echo</code> jest bardzo często używana do wyświetlania danych lub generowania fragmentów HTML.</p>
+<pre><code>&lt;?php
+echo "Jan Kowalski";
+?&gt;</code></pre>
+<p>Możliwe jest również wygenerowanie znacznika HTML:</p>
+<pre><code>&lt;?php
+echo "&lt;h2&gt;Aktualności&lt;/h2&gt;";
+?&gt;</code></pre>
+<p>Po przetworzeniu przez PHP tekst znajdujący się w cudzysłowie stanie się częścią kodu wysłanego do przeglądarki.</p>
+
+<h2>7. Łączenie HTML i PHP</h2>
+<p>Nie trzeba generować całej strony za pomocą instrukcji <code class="inline">echo</code>. Najczęściej stałe elementy strony zapisuje się bezpośrednio jako HTML, a PHP wykorzystuje się tylko tam, gdzie potrzebne są dane dynamiczne.</p>
+
+<pre><code>&lt;h1&gt;Dane użytkownika&lt;/h1&gt;
+
+&lt;p&gt;Imię:
+    &lt;?php
+    echo "Jan";
+    ?&gt;
+&lt;/p&gt;</code></pre>
+
+<p>Takie podejście ułatwia czytanie kodu, ponieważ struktura HTML pozostaje widoczna.</p>
+
+<h2>8. Kilka fragmentów PHP w jednym dokumencie</h2>
+<p>W jednym pliku można wielokrotnie przechodzić pomiędzy HTML i PHP.</p>
+<pre><code>&lt;?php
+echo "&lt;h1&gt;Sklep komputerowy&lt;/h1&gt;";
+?&gt;
+
+&lt;p&gt;Witamy na naszej stronie.&lt;/p&gt;
+
+&lt;?php
+echo "&lt;p&gt;Zapraszamy do zapoznania się z ofertą.&lt;/p&gt;";
+?&gt;</code></pre>
+<p>Interpreter wykonuje kolejne fragmenty PHP, natomiast zwykły HTML jest przekazywany do wyniku dokumentu.</p>
+
+<h2>9. Skrócona forma wyświetlania wartości</h2>
+<p>PHP udostępnia również składnię <code class="inline">&lt;?= ... ?&gt;</code>, która jest skrótem służącym do wyświetlania wartości.</p>
+<pre><code>&lt;p&gt;Nazwa szkoły: &lt;?= "Technikum Informatyczne" ?&gt;&lt;/p&gt;</code></pre>
+<p>Jest to odpowiednik:</p>
+<pre><code>&lt;p&gt;Nazwa szkoły:
+&lt;?php
+echo "Technikum Informatyczne";
+?&gt;
+&lt;/p&gt;</code></pre>
+
+<h2>10. Średnik w PHP</h2>
+<p>Większość instrukcji PHP kończymy średnikiem <code class="inline">;</code>.</p>
+<pre><code>&lt;?php
+echo "Pierwszy tekst";
+echo "Drugi tekst";
+?&gt;</code></pre>
+<p>Średnik informuje interpreter o zakończeniu instrukcji.</p>
+
+<h2>11. Komentarze w PHP</h2>
+<p>Komentarze nie są wykonywane. Służą programiście do opisywania kodu.</p>
+<pre><code>&lt;?php
+
+// komentarz jednoliniowy
+
+# również komentarz jednoliniowy
+
+/*
+   komentarz
+   wieloliniowy
+*/
+
+echo "PHP";
+
+?&gt;</code></pre>
+
+<h2>12. Uruchamianie pliku PHP w XAMPP</h2>
+<p>Plik PHP powinien znajdować się w katalogu udostępnianym przez serwer Apache. W standardowej instalacji XAMPP w systemie Windows jest to katalog:</p>
+<pre><code>C:\xampp\htdocs\</code></pre>
+<p>Jeżeli utworzymy plik:</p>
+<pre><code>C:\xampp\htdocs\lekcja\index.php</code></pre>
+<p>po uruchomieniu Apache można odwołać się do niego w przeglądarce przez adres lokalnego serwera, np.:</p>
+<pre><code>http://localhost/lekcja/</code></pre>
+
+<div class="box">
+<strong>Nie należy uruchamiać PHP przez zwykłe dwukrotne kliknięcie pliku.</strong> Dokument powinien zostać pobrany przez serwer WWW, aby kod PHP mógł zostać wykonany.
+</div>
+
+<h2>13. Jak przebiega wyświetlenie strony PHP?</h2>
+<ol>
+<li>Użytkownik wpisuje adres strony w przeglądarce.</li>
+<li>Przeglądarka wysyła żądanie do serwera WWW.</li>
+<li>Serwer rozpoznaje plik PHP.</li>
+<li>Interpreter PHP wykonuje znajdujący się w nim kod.</li>
+<li>Powstaje wynik, najczęściej zawierający HTML.</li>
+<li>Serwer wysyła wynik do przeglądarki.</li>
+<li>Przeglądarka interpretuje otrzymany HTML i wyświetla stronę.</li>
+</ol>
+
+<pre><code>PRZEGLĄDARKA
+     │
+     │ żądanie strony
+     ▼
+SERWER WWW (Apache)
+     │
+     ▼
+INTERPRETER PHP
+     │
+     │ wykonanie skryptu
+     ▼
+WYNIK – np. HTML
+     │
+     ▼
+PRZEGLĄDARKA</code></pre>
+
+<h2>14. Najczęstsze błędy początkujących</h2>
+<ul>
+<li>zapisanie dokumentu ze skryptem jako <code class="inline">.html</code> zamiast <code class="inline">.php</code>,</li>
+<li>brak uruchomionego serwera Apache,</li>
+<li>otwieranie pliku bezpośrednio z dysku zamiast przez serwer,</li>
+<li>brak średnika na końcu instrukcji,</li>
+<li>niepoprawne zapisanie znacznika <code class="inline">&lt;?php</code>,</li>
+<li>problemy z cudzysłowami podczas generowania HTML za pomocą <code class="inline">echo</code>.</li>
+</ul>
+
+<h2>15. Podsumowanie</h2>
+<ul>
+<li>PHP jest wykonywany po stronie serwera.</li>
+<li>Dokument zawierający PHP zapisujemy standardowo z rozszerzeniem <code class="inline">.php</code>.</li>
+<li>Kod PHP umieszczamy pomiędzy <code class="inline">&lt;?php</code> i <code class="inline">?&gt;</code>.</li>
+<li>PHP może być przeplatany ze zwykłym kodem HTML.</li>
+<li><code class="inline">echo</code> pozwala wysyłać tekst i kod HTML do wyniku strony.</li>
+<li>W jednym dokumencie może znajdować się wiele fragmentów PHP.</li>
+<li>Do przeglądarki trafia wynik działania skryptu, a nie jego kod PHP.</li>
+<li>W XAMPP pliki PHP uruchamiamy za pośrednictwem serwera Apache.</li>
+</ul>
+
+<footer>Przygotował – WW</footer>
+</main>
+</body>
+</html>

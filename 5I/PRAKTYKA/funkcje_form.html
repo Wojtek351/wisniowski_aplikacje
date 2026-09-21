@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Funkcje HTML - Formularze</title>
+</head>
+<body>
+
+  <!-- Formularz tekstowy -->
+  <form id="textForm">
+    <label for="poleTekstowe">Wpisz tekst:</label><br />
+    <input type="text" id="poleTekstowe" name="poleTekstowe" />
+    <br />
+    <!-- type="button" nie wysyła formularza i nie przeładowuje strony -->
+    <button type="button" onclick="pokazTekst()">Wyświetl tekst</button>
+    <p id="wynikTekstu"></p>
+  </form>
+
+  <!-- Checkbox z 3 opcjami -->
+  <form id="checkboxForm">
+    <p>Wybierz opcje (checkbox):</p>
+    <label><input type="checkbox" name="opcjaCheckbox" value="Opcja 1" /> Opcja 1</label><br />
+    <label><input type="checkbox" name="opcjaCheckbox" value="Opcja 2" /> Opcja 2</label><br />
+    <label><input type="checkbox" name="opcjaCheckbox" value="Opcja 3" /> Opcja 3</label><br />
+    <button type="button" onclick="pokazCheckboxy()">Pokaż zaznaczone</button>
+    <p id="wynikCheckbox"></p>
+  </form>
+
+  <!-- Radio -->
+  <form id="radioForm">
+    <p>Wybierz opcję (radio):</p>
+    <label><input type="radio" name="opcjaRadio" value="Opcja 1" checked /> Opcja 1</label><br />
+    <label><input type="radio" name="opcjaRadio" value="Opcja 2" /> Opcja 2</label><br />
+    <label><input type="radio" name="opcjaRadio" value="Opcja 3" /> Opcja 3</label><br />
+    <button type="button" onclick="pokazRadio()">Wybierz</button>
+    <p id="wynikRadio"></p>
+  </form>
+
+  <!-- Select -->
+  <form id="selectForm">
+    <label for="listaOwocow">Wybierz owoc:</label><br />
+    <select id="listaOwocow" name="listaOwocow">
+      <option value="Jabłko">Jabłko</option>
+      <option value="Banan">Banan</option>
+      <option value="Pomarańcza">Pomarańcza</option>
+    </select>
+    <br />
+    <button type="button" onclick="pokazOwoc()">Wybierz owoc</button>
+    <p id="wynikOwocu"></p>
+  </form>
+
+<script>
+  // STARY SPOSÓB: funkcję wywołuje atrybut onclick umieszczony w HTML.
+  // Odczytujemy tekst wpisany w polu za pomocą właściwości value.
+  function pokazTekst() {
+    const tekst = document.getElementById('poleTekstowe').value;
+
+    if (tekst == '') {
+      document.getElementById('wynikTekstu').textContent = 'Nie wpisano tekstu.';
+    } else {
+      document.getElementById('wynikTekstu').textContent = 'Wprowadzony tekst: ' + tekst;
+    }
+  }
+
+  // Checkbox - funkcja
+  function pokazCheckboxy() {
+    const polaCheckbox = document.getElementsByName('opcjaCheckbox');
+    let wynik = '';
+
+    // Sprawdzamy po kolei każde pole checkbox.
+    for (let i = 0; i < polaCheckbox.length; i++) {
+      if (polaCheckbox[i].checked) {
+        wynik = wynik + polaCheckbox[i].value + ' ';
+      }
+    }
+
+    if (wynik == '') {
+      document.getElementById('wynikCheckbox').textContent = 'Nie zaznaczono żadnej opcji.';
+    } else {
+      document.getElementById('wynikCheckbox').textContent = 'Zaznaczone opcje: ' + wynik;
+    }
+  }
+
+  // Radio - funkcja
+  function pokazRadio() {
+    const polaRadio = document.getElementsByName('opcjaRadio');
+    let wybranaOpcja = '';
+
+    // Sprawdzamy po kolei, który przycisk radio jest zaznaczony.
+    for (let i = 0; i < polaRadio.length; i++) {
+      if (polaRadio[i].checked) {
+        wybranaOpcja = polaRadio[i].value;
+        break;
+      }
+    }
+
+    document.getElementById('wynikRadio').textContent = 'Wybrana opcja: ' + wybranaOpcja;
+  }
+
+  // Select - funkcja
+  function pokazOwoc() {
+    const wybranyOwoc = document.getElementById('listaOwocow').value;
+    document.getElementById('wynikOwocu').textContent = 'Wybrany owoc: ' + wybranyOwoc;
+  }
+</script>
+
+</body>
+</html>

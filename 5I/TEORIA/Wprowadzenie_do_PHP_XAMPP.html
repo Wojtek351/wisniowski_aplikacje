@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wprowadzenie do PHP i XAMPP</title>
+<style>
+:root{
+  --bg:#0b1220; --panel:#111c2f; --panel2:#17243a; --text:#e8eef7;
+  --muted:#aebbd0; --accent:#59c3ff; --accent2:#8be9a8; --warn:#ffd166;
+  --border:#2b3b55; --code:#07101d;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; font-family:Segoe UI,Arial,sans-serif; line-height:1.65;
+  background:var(--bg); color:var(--text);
+}
+header{
+  padding:64px 8% 48px;
+  background:linear-gradient(135deg,#101d33,#0b1220);
+  border-bottom:1px solid var(--border);
+}
+header h1{font-size:clamp(2rem,5vw,3.5rem);margin:0 0 12px;color:white}
+header p{font-size:1.2rem;color:var(--muted);max-width:900px;margin:0}
+main{width:min(1100px,90%);margin:auto;padding:38px 0 70px}
+section{
+  background:var(--panel); border:1px solid var(--border); border-radius:16px;
+  padding:30px; margin:22px 0; box-shadow:0 8px 24px rgba(0,0,0,.18);
+}
+h2{color:var(--accent);margin-top:0;font-size:1.75rem}
+h3{color:var(--accent2);margin-top:26px}
+strong{color:white}
+ul,ol{padding-left:24px}
+li{margin:7px 0}
+.note,.important,.example{
+  padding:16px 18px;border-radius:10px;margin:18px 0;background:var(--panel2);
+}
+.note{border-left:5px solid var(--accent)}
+.important{border-left:5px solid var(--warn)}
+.example{border-left:5px solid var(--accent2)}
+code{
+  background:var(--code);border:1px solid var(--border);padding:3px 7px;
+  border-radius:6px;color:#bfe8ff;font-family:Consolas,monospace;
+}
+.flow{
+  text-align:center;font-weight:700;padding:18px;background:var(--code);
+  border-radius:10px;border:1px solid var(--border);color:#dff4ff;
+}
+table{width:100%;border-collapse:collapse;margin:18px 0}
+th,td{border:1px solid var(--border);padding:12px;text-align:left}
+th{background:#1b2d48;color:var(--accent)}
+.term{
+  display:grid;grid-template-columns:180px 1fr;gap:10px;
+  padding:10px 0;border-bottom:1px solid var(--border)
+}
+.term:last-child{border-bottom:none}
+.term b{color:var(--accent2)}
+footer{text-align:center;color:var(--muted);padding:10px 0 40px}
+@media(max-width:650px){
+  section{padding:21px}
+  .term{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Wprowadzenie do PHP i XAMPP</h1>
+  <p>Lekcja teoretyczna: czym jest PHP, gdzie jest wykorzystywany, jak działa aplikacja po stronie serwera oraz do czego służy lokalny pakiet serwerowy XAMPP.</p>
+</header>
+
+<main>
+<section>
+<h2>1. Czym jest PHP?</h2>
+<p><strong>PHP</strong> jest językiem programowania przeznaczonym przede wszystkim do tworzenia <strong>dynamicznych stron i aplikacji internetowych</strong>.</p>
+<div class="note"><strong>PHP</strong> = <em>PHP: Hypertext Preprocessor</em>. Jest to tzw. akronim rekurencyjny – pierwsza litera skrótu ponownie odnosi się do PHP.</div>
+<p>PHP powstał w 1995 roku, a jego twórcą był <strong>Rasmus Lerdorf</strong>. Początkowo był prostym zestawem narzędzi do tworzenia stron WWW, lecz z czasem rozwinął się w pełnoprawny język programowania.</p>
+<p>PHP jest projektem <strong>open source</strong>, czyli jego kod źródłowy jest publicznie dostępny, a z języka można korzystać bezpłatnie.</p>
+</section>
+
+<section>
+<h2>2. Do czego służy PHP?</h2>
+<p>PHP jest wykorzystywany przede wszystkim do programowania <strong>po stronie serwera</strong>. Może służyć do:</p>
+<ul>
+<li>generowania dynamicznych stron WWW,</li>
+<li>przetwarzania danych z formularzy HTML,</li>
+<li>wykonywania obliczeń,</li>
+<li>obsługi logowania i rejestracji użytkowników,</li>
+<li>zarządzania sesją użytkownika,</li>
+<li>obsługi plików na serwerze,</li>
+<li>komunikacji z bazami danych,</li>
+<li>dodawania, modyfikowania i usuwania danych,</li>
+<li>tworzenia systemów CMS i sklepów internetowych,</li>
+<li>tworzenia paneli administracyjnych i API.</li>
+</ul>
+<p>PHP bardzo często współpracuje z systemami baz danych, takimi jak <strong>MySQL</strong> i <strong>MariaDB</strong>.</p>
+</section>
+
+<section>
+<h2>3. PHP jako język działający po stronie serwera</h2>
+<h3>Strona klienta – client-side</h3>
+<p>Klientem jest najczęściej <strong>przeglądarka internetowa</strong>. To w niej wykorzystywane są przede wszystkim HTML, CSS oraz JavaScript.</p>
+<h3>Strona serwera – server-side</h3>
+<p>PHP działa przede wszystkim <strong>na serwerze</strong>. Przeglądarka wysyła żądanie, serwer uruchamia odpowiedni kod PHP, a następnie odsyła wynik.</p>
+<div class="flow">PRZEGLĄDARKA → ŻĄDANIE → SERWER WWW → PHP → ODPOWIEDŹ → PRZEGLĄDARKA</div>
+<div class="important"><strong>Ważne:</strong> użytkownik strony nie otrzymuje kodu źródłowego PHP. Przeglądarka otrzymuje wynik działania programu, np. wygenerowany dokument HTML.</div>
+</section>
+
+<section>
+<h2>4. PHP a HTML, CSS i JavaScript</h2>
+<p>Technologie te nie są swoimi zamiennikami. Podczas tworzenia aplikacji internetowej najczęściej <strong>współpracują ze sobą</strong>.</p>
+<table>
+<tr><th>Technologia</th><th>Główne zadanie</th><th>Gdzie działa?</th></tr>
+<tr><td>HTML</td><td>Struktura strony</td><td>Przeglądarka</td></tr>
+<tr><td>CSS</td><td>Wygląd strony</td><td>Przeglądarka</td></tr>
+<tr><td>JavaScript</td><td>Zachowanie i interakcja</td><td>Głównie przeglądarka</td></tr>
+<tr><td>PHP</td><td>Logika aplikacji po stronie serwera</td><td>Serwer</td></tr>
+<tr><td>MySQL / MariaDB</td><td>Przechowywanie danych</td><td>Serwer bazy danych</td></tr>
+</table>
+<div class="example"><strong>Przykład:</strong> HTML tworzy formularz, CSS określa jego wygląd, JavaScript może sprawdzić dane w przeglądarce, PHP odbiera i przetwarza formularz, a MariaDB przechowuje dane.</div>
+</section>
+
+<section>
+<h2>5. Najważniejsze cechy PHP</h2>
+<h3>Język interpretowany</h3>
+<p>Kod PHP jest wykonywany przez <strong>interpreter PHP</strong>. W typowej pracy nie tworzymy samodzielnie pliku wykonywalnego <code>.exe</code>.</p>
+<h3>Język skryptowy</h3>
+<p>PHP zaliczamy do języków skryptowych. Bardzo dobrze nadaje się do obsługi żądań internetowych i generowania treści.</p>
+<h3>Dynamiczne typowanie</h3>
+<p>Typ zmiennej może być ustalany na podstawie wartości przechowywanej przez zmienną i może zmieniać się podczas działania programu.</p>
+<h3>Programowanie proceduralne i obiektowe</h3>
+<p>PHP pozwala programować <strong>proceduralnie</strong> – z wykorzystaniem instrukcji i funkcji – oraz <strong>obiektowo</strong> – z wykorzystaniem klas i obiektów.</p>
+<h3>Wieloplatformowość</h3>
+<p>PHP może działać m.in. w systemach Windows, Linux i macOS. Wiele rzeczywistych serwerów internetowych z PHP działa pod kontrolą systemu Linux.</p>
+</section>
+
+<section>
+<h2>6. Zalety PHP</h2>
+<ul>
+<li><strong>Stosunkowo niski próg wejścia</strong> – podstaw można nauczyć się dość szybko.</li>
+<li><strong>Łatwa współpraca z HTML</strong> i technologiami WWW.</li>
+<li><strong>Dobra obsługa baz danych</strong>, szczególnie MySQL i MariaDB.</li>
+<li><strong>Bezpłatność i dostępność</strong> na wielu systemach operacyjnych.</li>
+<li><strong>Duża liczba materiałów i dokumentacji.</strong></li>
+<li><strong>Szerokie zastosowanie</strong> w istniejących stronach i aplikacjach internetowych.</li>
+</ul>
+</section>
+
+<section>
+<h2>7. Słabsze strony i ograniczenia PHP</h2>
+<ul>
+<li>W Internecie nadal znajduje się wiele <strong>starych i nieaktualnych przykładów</strong> PHP.</li>
+<li>Język pozwala szybko napisać program, ale bez odpowiednich zasad równie łatwo stworzyć <strong>nieuporządkowany kod</strong>.</li>
+<li>Nieprawidłowa obsługa danych użytkownika może prowadzić do problemów z <strong>bezpieczeństwem</strong>, np. SQL Injection lub XSS.</li>
+<li>Ze względu na długą historię języka można spotkać pewne <strong>niespójności</strong> w starszych elementach PHP.</li>
+</ul>
+<div class="note">Współczesne PHP znacznie różni się od bardzo starych wersji języka. Dlatego podczas nauki należy korzystać z aktualnych materiałów i dokumentacji.</div>
+</section>
+
+<section>
+<h2>8. Gdzie spotykamy PHP?</h2>
+<p>PHP wykorzystywany jest zarówno w niewielkich witrynach, jak i rozbudowanych aplikacjach internetowych.</p>
+<p>Jednym z najbardziej znanych systemów napisanych w PHP jest <strong>WordPress</strong> – popularny system zarządzania treścią (CMS).</p>
+<p>Dla PHP istnieją również frameworki, np. <strong>Laravel</strong> i <strong>Symfony</strong>. Framework dostarcza gotowe narzędzia, biblioteki oraz strukturę ułatwiającą tworzenie większych aplikacji.</p>
+</section>
+
+<section>
+<h2>9. Dlaczego sam Visual Studio Code nie wystarczy?</h2>
+<p>Visual Studio Code pozwala <strong>napisać i edytować</strong> plik PHP. Do typowego uruchamiania aplikacji WWW potrzebujemy jednak odpowiedniego środowiska serwerowego.</p>
+<div class="flow">SERWER WWW + PHP + BAZA DANYCH = LOKALNE ŚRODOWISKO DO NAUKI</div>
+<p>Można instalować i konfigurować wszystkie składniki osobno. Na początku wygodniej jednak skorzystać z gotowego pakietu – <strong>XAMPP</strong>.</p>
+</section>
+
+<section>
+<h2>10. Co to jest XAMPP?</h2>
+<p><strong>XAMPP</strong> jest bezpłatnym pakietem umożliwiającym szybkie uruchomienie lokalnego środowiska serwerowego.</p>
+<div class="term"><b>X</b><span>Cross-Platform – wieloplatformowość</span></div>
+<div class="term"><b>A</b><span>Apache – serwer WWW</span></div>
+<div class="term"><b>M</b><span>MariaDB – system zarządzania bazą danych</span></div>
+<div class="term"><b>P</b><span>PHP – język wykonywany po stronie serwera</span></div>
+<div class="term"><b>P</b><span>Perl – język programowania</span></div>
+</section>
+
+<section>
+<h2>11. Najważniejsze składniki XAMPP</h2>
+<h3>Apache</h3>
+<p><strong>Apache HTTP Server</strong> jest serwerem WWW. Odbiera żądania wysyłane przez przeglądarkę i zwraca odpowiednie zasoby.</p>
+<h3>PHP</h3>
+<p>XAMPP zawiera PHP, dzięki czemu lokalny serwer może wykonywać pliki z kodem PHP.</p>
+<h3>MariaDB</h3>
+<p><strong>MariaDB</strong> jest systemem zarządzania relacyjnymi bazami danych. Będziemy go używać m.in. do przechowywania informacji o użytkownikach, produktach czy zamówieniach.</p>
+<h3>phpMyAdmin</h3>
+<p><strong>phpMyAdmin</strong> jest aplikacją internetową pozwalającą zarządzać bazą danych za pomocą interfejsu graficznego. Umożliwia m.in. tworzenie baz i tabel, edycję rekordów, wykonywanie zapytań SQL oraz import i eksport danych.</p>
+</section>
+
+<section>
+<h2>12. Co oznacza localhost?</h2>
+<p><strong>localhost</strong> oznacza komputer, na którym aktualnie pracujemy.</p>
+<div class="example"><code>http://localhost</code><br><br>Standardowy adres IPv4 interfejsu lokalnego: <code>127.0.0.1</code></div>
+<p>Wpisując <code>http://localhost</code>, nie łączymy się z odległym serwerem w Internecie. Przeglądarka komunikuje się z serwerem uruchomionym <strong>na naszym komputerze</strong>.</p>
+</section>
+
+<section>
+<h2>13. Katalog htdocs</h2>
+<p>W standardowej instalacji XAMPP w systemie Windows bardzo ważnym katalogiem jest:</p>
+<div class="flow">C:\xampp\htdocs</div>
+<p>Jest to domyślny katalog, z którego Apache udostępnia nasze projekty.</p>
+<div class="example">
+Jeżeli utworzymy katalog:<br><br>
+<code>C:\xampp\htdocs\lekcja</code><br><br>
+to możemy odwołać się do niego w przeglądarce przez:<br><br>
+<code>http://localhost/lekcja/</code>
+</div>
+</section>
+
+<section>
+<h2>14. XAMPP Control Panel</h2>
+<p>Do wygodnego zarządzania usługami służy <strong>XAMPP Control Panel</strong>.</p>
+<p>Podczas naszych zajęć najważniejsze będą:</p>
+<ul>
+<li><strong>Apache</strong> – potrzebny do obsługi aplikacji WWW i PHP,</li>
+<li><strong>MySQL/MariaDB</strong> – potrzebny, gdy aplikacja korzysta z bazy danych.</li>
+</ul>
+<div class="important"><strong>Zapamiętaj:</strong> jeżeli Apache nie jest uruchomiony, typowa strona PHP otwierana przez <code>localhost</code> nie będzie działać.</div>
+</section>
+
+<section>
+<h2>15. Instalacja XAMPP – podstawowe etapy</h2>
+<ol>
+<li>Pobranie instalatora XAMPP z oficjalnej strony projektu Apache Friends.</li>
+<li>Uruchomienie instalatora.</li>
+<li>Wybranie potrzebnych składników.</li>
+<li>Wybór katalogu instalacji – w pracowni pozostawiamy standardowo <code>C:\xampp</code>.</li>
+<li>Zakończenie instalacji.</li>
+<li>Uruchomienie XAMPP Control Panel.</li>
+<li>Uruchomienie usługi Apache.</li>
+<li>W razie pracy z bazą danych – uruchomienie MySQL/MariaDB.</li>
+<li>Sprawdzenie działania przez wpisanie <code>http://localhost</code> w przeglądarce.</li>
+</ol>
+</section>
+
+<section>
+<h2>16. Jak będzie wyglądała nasza praca?</h2>
+<ol>
+<li>Uruchamiamy <strong>XAMPP Control Panel</strong>.</li>
+<li>Uruchamiamy <strong>Apache</strong>.</li>
+<li>W razie potrzeby uruchamiamy <strong>MySQL/MariaDB</strong>.</li>
+<li>Tworzymy katalog projektu w <code>htdocs</code>.</li>
+<li>Otwieramy katalog projektu w <strong>Visual Studio Code</strong>.</li>
+<li>Tworzymy i edytujemy pliki projektu.</li>
+<li>Zapisujemy zmiany.</li>
+<li>Otwieramy aplikację w przeglądarce przez <code>localhost</code>.</li>
+</ol>
+<table>
+<tr><th>Narzędzie</th><th>Do czego służy?</th></tr>
+<tr><td>Visual Studio Code</td><td>Tworzenie i edycja kodu</td></tr>
+<tr><td>XAMPP</td><td>Lokalne środowisko serwerowe</td></tr>
+<tr><td>Apache</td><td>Obsługa żądań WWW</td></tr>
+<tr><td>PHP</td><td>Wykonywanie logiki aplikacji po stronie serwera</td></tr>
+<tr><td>MariaDB</td><td>Przechowywanie danych</td></tr>
+<tr><td>Przeglądarka</td><td>Wyświetlanie wyniku działania aplikacji</td></tr>
+</table>
+</section>
+
+<section>
+<h2>17. Najważniejsze pojęcia do zapamiętania</h2>
+<div class="term"><b>PHP</b><span>Język programowania używany przede wszystkim po stronie serwera.</span></div>
+<div class="term"><b>Server-side</b><span>Wykonywanie kodu po stronie serwera.</span></div>
+<div class="term"><b>Client-side</b><span>Wykonywanie kodu po stronie klienta, najczęściej przeglądarki.</span></div>
+<div class="term"><b>Apache</b><span>Serwer WWW.</span></div>
+<div class="term"><b>MariaDB</b><span>System zarządzania relacyjną bazą danych.</span></div>
+<div class="term"><b>phpMyAdmin</b><span>Aplikacja WWW do zarządzania bazą danych.</span></div>
+<div class="term"><b>XAMPP</b><span>Pakiet lokalnego środowiska serwerowego.</span></div>
+<div class="term"><b>localhost</b><span>Nazwa odnosząca się do lokalnego komputera.</span></div>
+<div class="term"><b>127.0.0.1</b><span>Standardowy adres IPv4 interfejsu loopback.</span></div>
+<div class="term"><b>htdocs</b><span>Domyślny katalog projektów udostępnianych przez Apache w XAMPP.</span></div>
+<div class="term"><b>Interpreter</b><span>Program wykonujący kod napisany w danym języku.</span></div>
+<div class="term"><b>Dynamiczna strona</b><span>Strona, której zawartość może być generowana lub zmieniana przez program.</span></div>
+</section>
+
+<section>
+<h2>18. Podsumowanie</h2>
+<p>PHP jest językiem wykorzystywanym przede wszystkim do tworzenia <strong>dynamicznych aplikacji internetowych po stronie serwera</strong>. Pozwala m.in. przetwarzać formularze, pracować z plikami, obsługiwać użytkowników oraz komunikować się z bazami danych.</p>
+<p>Do nauki wykorzystamy <strong>XAMPP</strong>, który zapewni lokalne środowisko serwerowe. Najważniejszymi dla nas składnikami będą <strong>Apache, PHP, MariaDB oraz phpMyAdmin</strong>.</p>
+<div class="note"><strong>Następny krok:</strong> pierwsze skrypty PHP – struktura pliku, znaczniki PHP, instrukcja <code>echo</code>, komentarze oraz połączenie PHP z HTML.</div>
+</section>
+</main>
+
+<footer>Przygotował – WW</footer>
+</body>
+</html>

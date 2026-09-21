@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript – formularze – ćwiczenia</title>
+<style>
+body{font-family:Arial,sans-serif;background:#111827;color:#e5e7eb;margin:0;line-height:1.6}main{max-width:1050px;margin:auto;padding:32px}h1{color:#60a5fa}h2{color:#93c5fd;margin-top:40px}h3{color:#bfdbfe}.box{background:#1f2937;border:1px solid #374151;border-radius:12px;padding:20px;margin:18px 0}.new{border-left:5px solid #60a5fa}code{background:#0b1220;padding:2px 6px;border-radius:5px;color:#f9a8d4}pre{background:#0b1220;padding:18px;border-radius:10px;overflow:auto;color:#d1fae5}.task{background:#172033;border-left:4px solid #93c5fd;padding:18px;margin:16px 0;border-radius:8px}strong{color:#fff}.note{color:#cbd5e1}footer{margin-top:50px;border-top:1px solid #374151;padding-top:16px;color:#9ca3af}
+</style>
+</head>
+<body><main>
+<h1>JavaScript – formularze – ćwiczenia praktyczne</h1>
+<p>Ćwiczenia utrwalają odczytywanie danych z różnych elementów formularza, sprawdzanie zaznaczenia pól, wykonywanie obliczeń oraz wyświetlanie wyników na stronie. W zadaniach stosuj proste i czytelne konstrukcje JavaScript.</p>
+
+<h2>Ćwiczenie 1 – Rejestracja uczestnika kursu</h2>
+<div class="task">
+<p>Utwórz formularz zawierający:</p>
+<ul><li>pole tekstowe „Imię i nazwisko”,</li><li>pole typu <code>number</code> „Wiek”,</li><li>listę <code>select</code> z kursami: JavaScript, PHP, C++,</li><li>pola <code>radio</code>: „stacjonarnie” i „zdalnie”,</li><li>checkbox „Chcę otrzymywać materiały dodatkowe”,</li><li>przycisk „Zapisz”.</li></ul>
+<p>Po kliknięciu przycisku program powinien sprawdzić, czy wpisano imię i nazwisko oraz czy uczestnik ma co najmniej 16 lat. Następnie powinien odczytać kurs, tryb zajęć i stan checkboxa oraz wyświetlić kompletne podsumowanie pod formularzem.</p>
+<p>Jeżeli imię i nazwisko nie zostało wpisane albo wiek jest mniejszy niż 16 lat, wyświetl odpowiedni komunikat zamiast podsumowania.</p>
+</div>
+
+<h2>Ćwiczenie 2 – Kalkulator</h2>
+<div class="task">
+<p>Utwórz dwa pola liczbowe oraz listę <code>select</code>, z której można wybrać: dodawanie, odejmowanie, mnożenie lub dzielenie. Po kliknięciu przycisku „Oblicz” wyświetl wynik pod formularzem.</p>
+<p>Uwzględnij przypadek dzielenia przez zero i wyświetl wtedy odpowiedni komunikat.</p>
+</div>
+
+<h2>Ćwiczenie 3 – Wyposażenie stanowiska komputerowego</h2>
+<div class="task">
+<p>Utwórz formularz z checkboxami: monitor, klawiatura, mysz, słuchawki, kamera internetowa. Po kliknięciu „Pokaż wyposażenie” wyświetl wszystkie zaznaczone elementy.</p>
+<p>Jeżeli nie zaznaczono żadnego elementu, wyświetl komunikat „Nie wybrano wyposażenia”. Nie korzystaj z <code>Array.from()</code> ani <code>map()</code> – sprawdzaj pola w prosty sposób.</p>
+</div>
+
+<h2>Ćwiczenie 4 – Zamówienie</h2>
+<div class="task">
+<p>Utwórz formularz pozwalający wybrać produkt z listy oraz podać liczbę sztuk. Przyjmij ceny: klawiatura – 120 zł, mysz – 80 zł, słuchawki – 150 zł.</p>
+<p>Dodaj checkbox „Dostawa kurierska +15 zł”. Po kliknięciu „Oblicz koszt” program ma obliczyć cenę produktów, doliczyć dostawę tylko wtedy, gdy checkbox jest zaznaczony, i wyświetlić końcową kwotę.</p>
+<p>Sprawdź również, czy liczba sztuk jest większa od zera.</p>
+</div>
+
+<h2>Ćwiczenie 5 – Kopiowanie i modyfikowanie wartości pól</h2>
+<div class="task">
+<p>Utwórz dwa pola tekstowe. Użytkownik wpisuje tekst do pierwszego pola. Po kliknięciu przycisku „Kopiuj” jego zawartość ma zostać wpisana do drugiego pola.</p>
+<p>Dodaj drugi przycisk „Wyczyść”, który usuwa zawartość obu pól. W tym ćwiczeniu wykorzystujesz <code>.value</code> zarówno do odczytu, jak i do zapisu.</p>
+</div>
+
+<h2>Ćwiczenie 6 – Konfigurator komputera</h2>
+<div class="task">
+<p>Utwórz formularz zawierający:</p>
+<ul><li>pole tekstowe na nazwę właściciela zestawu,</li><li><code>select</code> z procesorami: Ryzen 5 – 800 zł, Ryzen 7 – 1400 zł, Ryzen 9 – 2100 zł,</li><li><code>radio</code> z ilością RAM: 16 GB – 200 zł, 32 GB – 350 zł, 64 GB – 650 zł,</li><li>checkbox „System Windows +500 zł”,</li><li>checkbox „Montaż komputera +150 zł”.</li></ul>
+<p>Po kliknięciu „Podsumuj” wyświetl właściciela zestawu, wybrane podzespoły/usługi oraz całkowity koszt. Jeżeli nie wpisano właściciela albo nie wybrano ilości RAM, wyświetl komunikat o brakujących danych.</p>
+</div>
+
+<h2>Nowy element – formularz może reagować bez przycisku</h2>
+<div class="box new">
+<p>Do tej pory funkcja była najczęściej wykonywana po kliknięciu przycisku. JavaScript może jednak reagować od razu na zmianę elementu formularza.</p>
+<h3>Zdarzenie <code>change</code></h3>
+<p><code>change</code> występuje, gdy zmieni się wartość elementu formularza. Dobrze nadaje się np. do checkboxów, pól radio i list <code>select</code>.</p>
+<pre>&lt;input type="checkbox" id="zgoda" onchange="pokazInformacje()"&gt;
+&lt;label for="zgoda"&gt;Pokaż dodatkowe informacje&lt;/label&gt;
+
+&lt;p id="wynik"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function pokazInformacje() {
+    let pole = document.getElementById("zgoda");
+    let wynik = document.getElementById("wynik");
+
+    if (pole.checked) {
+        wynik.textContent = "Dodatkowe informacje są widoczne.";
+    } else {
+        wynik.textContent = "";
+    }
+}
+&lt;/script&gt;</pre>
+<p class="note">Nie ma tutaj przycisku. Zaznaczenie lub odznaczenie checkboxa automatycznie uruchamia funkcję.</p>
+</div>
+
+<div class="box new">
+<h3>Zdarzenie <code>input</code></h3>
+<p><code>input</code> reaguje podczas zmieniania zawartości pola. W polu tekstowym funkcja może więc wykonywać się przy każdym wpisanym lub usuniętym znaku.</p>
+<pre>&lt;label for="imie"&gt;Imię:&lt;/label&gt;
+&lt;input type="text" id="imie" oninput="pokazTekst()"&gt;
+
+&lt;p id="wynik"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function pokazTekst() {
+    let imie = document.getElementById("imie").value;
+    let wynik = document.getElementById("wynik");
+
+    if (imie == "") {
+        wynik.textContent = "";
+    } else {
+        wynik.textContent = "Witaj " + imie;
+    }
+}
+&lt;/script&gt;</pre>
+<p>Jeżeli użytkownik wpisze np. <strong>Adam</strong>, napis „Witaj Adam” pojawi się od razu – bez zatwierdzania formularza.</p>
+</div>
+
+<h2>Ćwiczenia – reakcja bez przycisku</h2>
+<div class="task"><h3>Ćwiczenie 7 – Podgląd tekstu</h3><p>Utwórz pole tekstowe „Wiadomość”. Pod nim umieść akapit. Podczas wpisywania tekstu jego zawartość ma być automatycznie wyświetlana w akapicie. Nie dodawaj przycisku.</p></div>
+<div class="task"><h3>Ćwiczenie 8 – Pokazywanie informacji</h3><p>Utwórz checkbox „Pokaż regulamin”. Po zaznaczeniu pod checkboxem ma pojawić się krótki tekst regulaminu. Po odznaczeniu tekst ma zniknąć.</p></div>
+<div class="task"><h3>Ćwiczenie 9 – Automatyczny wybór</h3><p>Utwórz listę <code>select</code> z trzema językami programowania: JavaScript, PHP i C++. Po zmianie wyboru pod listą ma natychmiast pojawić się napis „Wybrano: ...”. Nie używaj przycisku.</p></div>
+<div class="task"><h3>Ćwiczenie 10 – Licznik znaków</h3><p>Utwórz pole tekstowe. Podczas wpisywania pod polem ma być na bieżąco wyświetlana liczba wpisanych znaków, np. „Liczba znaków: 8”. Wykorzystaj właściwość <code>.length</code> odczytanego tekstu.</p></div>
+
+<h2>Zadanie podsumowujące</h2>
+<div class="task">
+<p>Utwórz formularz zamówienia biletu na wydarzenie. Formularz powinien zawierać imię i nazwisko, wybór rodzaju biletu z listy, liczbę biletów, wybór miejsca za pomocą <code>radio</code> oraz co najmniej dwa dodatki jako checkboxy.</p>
+<p>Program ma obliczać końcową cenę i wyświetlać czytelne podsumowanie. Samodzielnie ustal ceny biletów i dodatków. Zadbaj o sprawdzenie podstawowych danych przed wykonaniem obliczeń.</p>
+<p><strong>Dodatkowo:</strong> jeden wybrany element formularza powinien reagować automatycznie na zmianę bez użycia przycisku.</p>
+</div>
+
+<footer>Przygotował – WW</footer>
+</main></body></html>
